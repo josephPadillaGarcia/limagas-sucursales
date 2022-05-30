@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::namespace('Web')->name('web.')->group(function(){
+    Route::get('/', [WebController::class, 'index'])->name("index");
+});
+
+Route::prefix('admin')->group(function(){
+    Route::get('/');
 });
